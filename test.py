@@ -1,5 +1,3 @@
-# Baby Advantage Actor-Critic | Sam Greydanus | October 2017 | MIT License
-
 from __future__ import print_function
 import torch, os, gym, time
 import numpy as np
@@ -24,7 +22,7 @@ class NNPolicy(nn.Module): # an actor-critic neural network
         self.gru = nn.GRUCell(32 * 5 * 5, memsize)
         self.critic_linear, self.actor_linear = nn.Linear(memsize, 1), nn.Linear(memsize, num_actions)
 
-    def forward(self, inputs, train=True, hard=False):
+    def forward(self, inputs):
         inputs, hx = inputs
         x = F.elu(self.conv1(inputs))
         x = F.elu(self.conv2(x))
